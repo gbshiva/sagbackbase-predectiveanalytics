@@ -8,6 +8,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 
 import lombok.Data;
+import spark.QueryParamsMap;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -27,7 +28,6 @@ import org.apache.log4j.Logger;
 import static spark.Spark.get;
 
 public class ApplicationMain {
-	private static customerModel model = new customerModel();
 
     public static void main(String[] args) {
         Logger logger = Logger.getLogger(ApplicationMain.class);
@@ -36,7 +36,9 @@ public class ApplicationMain {
         get("/predict", (request, response) -> {
         	response.status(200);
             response.type("application/json");
-            return dataToJson(model.predict(request.queryParams("id")));
+        	customerModel model = new customerModel(request);
+        	//model.predict();
+            return dataToJson(model.predict());
         });
         		
         		
@@ -57,10 +59,13 @@ public class ApplicationMain {
         	//ObjectMapper mapper = new XmlMapper();
         	
         	
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            StringWriter sw = new StringWriter();
-            mapper.writeValue(sw, data);
-            return sw.toString();
+            //mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            //StringWriter sw = new StringWriter();
+            //mapper.writeValue(sw, data);
+            
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);
+            
+            //return sw.toString();
         } catch (IOException e){
         	e.printStackTrace(System.out);
         	throw new RuntimeException("IOException from a StringWriter?");

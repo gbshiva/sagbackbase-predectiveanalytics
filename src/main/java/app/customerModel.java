@@ -1,16 +1,27 @@
 package app;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
+import java.util.Set;
+import spark.Request;
 
 public class customerModel {
 	
-	public List predict(String customerID) throws Exception{
-		return null;
+	private Map<String, String> input = new HashMap<String,String>(); 
+	private Map<String, String> output = new HashMap<String,String>(); 
+	
+	public customerModel(Request request){
+		
+		Set<String> params = request.queryParams();  
+		for(Object object : params) {
+		    input.put((String)object, request.queryParams((String)object));
+		}
+		
+		
+	}
+	public Map<String,String> predict() throws Exception{
+		output.put("WealthMgmtscore", "95");
+		output.put("Mortgagescore", "45");
+		return output;
 	}
 
 }
