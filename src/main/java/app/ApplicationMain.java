@@ -30,9 +30,10 @@ import static spark.Spark.get;
 public class ApplicationMain {
 
     public static void main(String[] args) {
+    	
         Logger logger = Logger.getLogger(ApplicationMain.class);
         SparkUtils.createServerWithRequestLog(logger);
-
+        spark.Spark.port(8080);
         get("/predict", (request, response) -> {
         	response.status(200);
             response.type("application/json");

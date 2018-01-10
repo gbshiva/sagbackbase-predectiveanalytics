@@ -10,18 +10,18 @@ public class customerModel {
 	private Map<String, String> output = new HashMap<String,String>(); 
 	
 	public customerModel(Request request){
-		
 		Set<String> params = request.queryParams();  
 		for(Object object : params) {
 		    input.put((String)object, request.queryParams((String)object));
 		}
-		
-		
 	}
-	public Map<String,String> predict() throws Exception{
-		output.put("WealthMgmtscore", "95");
-		output.put("Mortgagescore", "45");
-		return output;
+	public Object predict() throws Exception{
+		//output.put("WealthMgmtscore", "95");
+		//output.put("Mortgagescore", "45");
+		userProfile usr = new userProfile();
+		invokeZementis predicitionEngine = new invokeZementis("test","test");
+		return predicitionEngine.predict(usr);
+		
 	}
 
 }
