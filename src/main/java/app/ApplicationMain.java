@@ -28,7 +28,8 @@ import org.apache.log4j.Logger;
 import static spark.Spark.get;
 
 public class ApplicationMain {
-
+	
+	public static userProfileFactory profileFactory = new userProfileFactory("userProfiles");
     public static void main(String[] args) {
     	
         Logger logger = Logger.getLogger(ApplicationMain.class);
@@ -37,8 +38,7 @@ public class ApplicationMain {
         get("/predict", (request, response) -> {
         	response.status(200);
             response.type("application/json");
-        	customerModel model = new customerModel(request);
-        	//model.predict();
+        	customerModel model = new customerModel(request,profileFactory);
             return dataToJson(model.predict());
         });
         		

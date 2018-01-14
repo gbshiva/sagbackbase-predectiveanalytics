@@ -2,12 +2,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.sag.backbase</groupId>
 	<artifactId>predective-analytics</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<properties>
+		<ehcache.version>2.10.0.0.26</ehcache.version>
+		<terracotta.version>4.3.0.0.26</terracotta.version>
+		<toolkit.name>terracotta-toolkit-runtime-ee</toolkit.name>
+		<slf4j.version>1.7.7</slf4j.version>
+	</properties>
 
 	<dependencies>
+	<!--  
+		<dependency> <groupId>org.terracotta.bigmemory</groupId> <artifactId>bigmemory</artifactId> 
+			<version>${terracotta.version}</version> </dependency>
+			-->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-ee</artifactId>
+			<version>${ehcache.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.terracotta</groupId>
+			<artifactId>${toolkit.name}</artifactId>
+			<version>${terracotta.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
@@ -100,16 +125,41 @@
 				<version>1.2.1</version>
 				<configuration>
 					<mainClass>app.ApplicationMain</mainClass>
-
+					<arguments>
+						<argument>-Dcom.tc.productkey.path=/Users/sgokaram/Documents/terracotta-ga/bigmemory-max-4.3.0.0.26/terracotta-license.key</argument>
+						<argument>-Dcluster="false"</argument>
+					</arguments>
+					<systemProperties>
+            				<systemProperty>
+              					<key>com.tc.productkey.path</key>
+              					<value>/Users/sgokaram/Documents/terracotta-ga/bigmemory-max-4.3.0.0.26/terracotta-license.key</value>
+            				</systemProperty>
+          			</systemProperties>
 				</configuration>
 			</plugin>
-
-
-
-
-
 		</plugins>
 	</build>
-
+	<repositories>
+		<repository>
+			<id>terracotta-snapshots</id>
+			<url>http://www.terracotta.org/download/reflector/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>terracotta-releases</id>
+			<url>http://www.terracotta.org/download/reflector/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>

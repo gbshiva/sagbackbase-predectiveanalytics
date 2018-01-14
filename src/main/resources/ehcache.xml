@@ -1,0 +1,66 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="false"
+	monitoring="autodetect" dynamicConfig="true" name="SAG SmartBank User Profiles">
+	<diskStore path="java.io.tmpdir" />
+
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="false"
+		diskSpoolBufferSizeMB="30" maxElementsOnDisk="10000000"
+		diskPersistent="false" diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU" statistics="true" />
+
+
+	<cache name="userProfiles" maxBytesLocalHeap="250M" statistics="false"
+		eternal="true" maxBytesLocalOffHeap="250M" memoryStoreEvictionPolicy="LRU"
+		OverflowToOffHeap="true">
+		<terracotta clustered="true">
+			<nonstop immediateTimeout="false" timeoutMillis="10000">
+				<timeoutBehavior type="noop" />
+			</nonstop>
+		</terracotta>
+		<searchable values="false">
+			<searchAttribute name="CustomerGender" type="String" />
+			<searchAttribute name="AvgCheckingBalanceLast6MonthsInThousands"
+				type="Integer" />
+			<searchAttribute name="AvgSavingsBalanceLast6MonthsInThousands"
+				type="Integer" />
+			<searchAttribute name="MaxSavingAccountBalanceInThousands"
+				type="Integer" />
+			<searchAttribute name="CustomerSinceInMonths" type="Integer" />
+			<searchAttribute name="AgeOfBusiness" type="Integer" />
+			<searchAttribute name="YearsSinceRedidenceWasBuilt"
+				type="Integer" />
+			<searchAttribute name="TotalNetWorthBand" type="Integer" />
+			<searchAttribute name="NumberOfChildrenInHouseHold"
+				type="Integer" />
+			<searchAttribute name="DaysSinceRefiResearch" type="Integer" />
+			<searchAttribute name="EstimatedLoanToValueRation"
+				type="Integer" />
+			<searchAttribute name="DaysSinceFinanceResearch"
+				type="Integer" />
+			<searchAttribute name="PercentageFriendsAlsoCustomers"
+				type="Double" />
+			<searchAttribute name="NumberOfComplainsFromFriendsLast6Months"
+				type="Integer" />
+			<searchAttribute name="PercentageFriendsChurnedLast30Days"
+				type="Double" />
+			<searchAttribute name="SameAsFriendResearch" type="Integer" />
+			<searchAttribute name="NumberWebsiteVisitsLast7Days"
+				type="Integer" />
+			<searchAttribute name="NumberOfDaysSinceLastWebsiteVisit"
+				type="Integer" />
+			<searchAttribute name="NumberWebsitePagesVisitedDuringLastVisit"
+				type="Integer" />
+			<searchAttribute name="PercentageOpenedNewsletters"
+				type="Double" />
+			<searchAttribute name="OverallSentimentForLastPurchasedProduct"
+				type="Double" />
+			<searchAttribute name="AvgFriendsAge" type="Integer" />
+			<searchAttribute name="CustomerAge" type="Integer" />
+		</searchable>
+	</cache>
+	<managementRESTService enabled="true" />
+	<terracottaConfig url="localhost:9510,localhost:9511"
+		rejoin="true" />
+
+</ehcache>

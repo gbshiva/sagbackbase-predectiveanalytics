@@ -1,6 +1,10 @@
 package app;
 
-public class userProfile {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class userProfile implements Serializable {
+	
 	public int AvgCheckingBalanceLast6MonthsInThousands=22;
 	public int AvgSavingsBalanceLast6MonthsInThousands=45;
 	public int MaxSavingAccountBalanceInThousands=55;
@@ -161,6 +165,43 @@ public class userProfile {
 	}
 	public void setCustomerAge(int customerAge) {
 		CustomerAge = customerAge;
+	}
+	public userProfile(int avgCheckingBalanceLast6MonthsInThousands, int avgSavingsBalanceLast6MonthsInThousands,
+			int maxSavingAccountBalanceInThousands, int customerSinceInMonths, int ageOfBusiness,
+			int yearsSinceRedidenceWasBuilt, int totalNetWorthBand, int numberOfChildrenInHouseHold,
+			int daysSinceRefiResearch, int estimatedLoanToValueRation, int daysSinceFinanceResearch,
+			double percentageFriendsAlsoCustomers, int numberOfComplainsFromFriendsLast6Months,
+			double percentageFriendsChurnedLast30Days, int sameAsFriendResearch, int numberWebsiteVisitsLast7Days,
+			int numberOfDaysSinceLastWebsiteVisit, int numberWebsitePagesVisitedDuringLastVisit,
+			double percentageOpenedNewsletters, double overallSentimentForLastPurchasedProduct, String customerGender,
+			int avgFriendsAge, int customerAge) {
+		super();
+		AvgCheckingBalanceLast6MonthsInThousands = avgCheckingBalanceLast6MonthsInThousands;
+		AvgSavingsBalanceLast6MonthsInThousands = avgSavingsBalanceLast6MonthsInThousands;
+		MaxSavingAccountBalanceInThousands = maxSavingAccountBalanceInThousands;
+		CustomerSinceInMonths = customerSinceInMonths;
+		AgeOfBusiness = ageOfBusiness;
+		YearsSinceRedidenceWasBuilt = yearsSinceRedidenceWasBuilt;
+		TotalNetWorthBand = totalNetWorthBand;
+		NumberOfChildrenInHouseHold = numberOfChildrenInHouseHold;
+		DaysSinceRefiResearch = daysSinceRefiResearch;
+		EstimatedLoanToValueRation = estimatedLoanToValueRation;
+		DaysSinceFinanceResearch = daysSinceFinanceResearch;
+		PercentageFriendsAlsoCustomers = percentageFriendsAlsoCustomers;
+		NumberOfComplainsFromFriendsLast6Months = numberOfComplainsFromFriendsLast6Months;
+		PercentageFriendsChurnedLast30Days = percentageFriendsChurnedLast30Days;
+		SameAsFriendResearch = sameAsFriendResearch;
+		NumberWebsiteVisitsLast7Days = numberWebsiteVisitsLast7Days;
+		NumberOfDaysSinceLastWebsiteVisit = numberOfDaysSinceLastWebsiteVisit;
+		NumberWebsitePagesVisitedDuringLastVisit = numberWebsitePagesVisitedDuringLastVisit;
+		PercentageOpenedNewsletters = percentageOpenedNewsletters;
+		OverallSentimentForLastPurchasedProduct = overallSentimentForLastPurchasedProduct;
+		CustomerGender = customerGender;
+		AvgFriendsAge = avgFriendsAge;
+		CustomerAge = customerAge;
+	}
+	public userProfile(){
+		super();
 	}
 
 }
