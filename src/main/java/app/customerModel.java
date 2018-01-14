@@ -21,8 +21,7 @@ public class customerModel {
 		//output.put("WealthMgmtscore", "95");
 		//output.put("Mortgagescore", "45");
 		invokeZementis predicitionEngine = new invokeZementis("Shivakumar.Gokaram@softwareag.com","@3s3FLc9");
-		return predicitionEngine.predict(usrprofiles.getUserProfile(1));
-		
+		return predicitionEngine.predict(usrprofiles.getUserProfile(input.get("id")));
 	}
 
 }
