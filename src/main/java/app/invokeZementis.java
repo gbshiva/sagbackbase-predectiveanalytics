@@ -84,10 +84,13 @@ public class invokeZementis {
 			ObjectMapper mapper = new ObjectMapper();
 			adapaResponse resp = mapper.readValue(jsonString, adapaResponse.class);
 			predectionResponse usrResp = new predectionResponse();
-			if (resp.outputs[0].BusinessDecision == "WealthManagement") {
+			System.out.println("Business Decision = "+resp.outputs[0].BusinessDecision);
+			if (resp.outputs[0].BusinessDecision.equals("WealthManagement")) {
+				System.out.println("Setting Wealth Management Scrore");
 				usrResp.WealthMgmtscore = resp.outputs[0].Score;
 				usrResp.Mortgagescore = 0;
 			} else {
+				System.out.println("Setting Mortgage Scrore");
 				usrResp.Mortgagescore = resp.outputs[0].Score;
 				usrResp.WealthMgmtscore = 0;
 

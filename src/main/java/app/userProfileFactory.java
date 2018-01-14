@@ -37,11 +37,13 @@ public class userProfileFactory {
 	
 	public userProfile getUserProfile(Object id) {
 		Element e = cache.get(id);
-		if ( e!= null)
-			return (userProfile)e.getValue();
-		else
+		if ( e!= null){
+			System.out.println("Found profile In Cache for ID="+id);
+			return (userProfile)e.getObjectValue();
+		}
+		else{
+			System.out.println("Profile Not found for user using Default");
 			return new userProfile();
-		
 	}
 
-}
+}}
